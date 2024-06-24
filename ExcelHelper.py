@@ -8,11 +8,14 @@ def compare_excel_files(file1, file2, output_file):
 
     with open(output_file, 'w', encoding='utf-8') as f:
 
+        file_name1 = os.path.splitext(os.path.basename(file1))[0]
+        file_name2 = os.path.splitext(os.path.basename(file2))[0]
+
         # Check if both files have the same sheet names
         if xl1.sheet_names != xl2.sheet_names:
-            f.write("The files have different sheet names.\n")
-            f.write(f"File1 sheets: {xl1.sheet_names}\n")
-            f.write(f"File2 sheets: {xl2.sheet_names}\n")
+            f.write("两文件中存在名称不一致的表单.\n")
+            f.write(f"{file_name1}中表单名为: {xl1.sheet_names}\n")
+            f.write(f"{file_name2}中表单名为: {xl2.sheet_names}\n")
             return
 
         # Iterate through each sheet and compare
